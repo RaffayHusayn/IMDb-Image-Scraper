@@ -25,15 +25,38 @@ public class ImageFinder extends HttpServlet{
 			"https://images.pexels.com/photos/545063/pexels-photo-545063.jpeg?auto=compress&format=tiny",
 			"https://images.pexels.com/photos/464664/pexels-photo-464664.jpeg?auto=compress&format=tiny",
 			"https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&format=tiny",
-			"https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&format=tiny"
+			"https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&format=tiny",
+			"https://m.media-amazon.com/images/M/MV5BODA5ODY3NjY5OV5BMl5BanBnXkFtZTgwOTcyMzkxMzE@._V1_.jpg",
+			"https://m.media-amazon.com/images/M/MV5BODM4NzkyNjcxOV5BMl5BanBnXkFtZTgwMDgyMzkxMzE@._V1_.jpg",
+			"https://m.media-amazon.com/images/M/MV5BMTM5NTc3NTg2NV5BMl5BanBnXkFtZTgwODAwOTE4MDE@._V1_.jpg"
   };
+	public static final String[] imdbImages = {
+			"https://m.media-amazon.com/images/M/MV5BODA5ODY3NjY5OV5BMl5BanBnXkFtZTgwOTcyMzkxMzE@._V1_.jpg",
+			"https://m.media-amazon.com/images/M/MV5BODM4NzkyNjcxOV5BMl5BanBnXkFtZTgwMDgyMzkxMzE@._V1_.jpg",
+			"https://m.media-amazon.com/images/M/MV5BMTM5NTc3NTg2NV5BMl5BanBnXkFtZTgwODAwOTE4MDE@._V1_.jpg"
+	};
 
 	@Override
 	protected final void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
+
+
+
+
 		resp.setContentType("text/json");
 		String path = req.getServletPath();
 		String url = req.getParameter("url");
-		System.out.println("Got request of:" + path + " with query param:" + url);
-		resp.getWriter().print(GSON.toJson(testImages));
+		if("".equals(url)){
+			System.out.println("enter a url");
+//		}else if(url.equals("imdb")){
+//			System.out.println("Got request of:" + path + " with query param:" + url);
+//			resp.getWriter().print(GSON.toJson(imdbImages));
+		}else {
+			System.out.println("Got request of:" + path + " with query param:" + url);
+			resp.getWriter().print(GSON.toJson(imdbImages));
+		}
 	}
 }
+
