@@ -55,7 +55,7 @@ form{
     transition-duration: 0.4s;
 }
 .searchButton:hover {
-    border: 3px solid #26a974;
+    border: 5px solid #26a974;
     background: #ffffff;
     color: #26a974;
 
@@ -137,8 +137,11 @@ form{
 
 
 /*=========== suggestions ============*/
+.suggestionContainer{
+    text-align:center
+ }
 .suggestions {
-    background-color: white;
+    background-color: rgba(38, 169, 116, 0.71);
     border: none;
     padding: 16px 16px;
     text-align: center;
@@ -146,15 +149,12 @@ form{
     display: inline-block;
     font-size: 14px;
     margin: 2px 2px;
-    transition-duration: 0.4s;
     cursor: pointer;
     color:black;
-    border: 3px solid #26a974;
     border-radius: 30px;
 }
 
 
 .suggestions:hover {
-    background-color: #26a974;
-    color: white;
+    background-color: rgba(38, 169, 116, 0.43);
 }
