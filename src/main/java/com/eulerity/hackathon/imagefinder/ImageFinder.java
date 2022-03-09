@@ -40,29 +40,12 @@ public class ImageFinder extends HttpServlet {
     @Override
     protected final void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ImdbLinkFromList list = new ImdbLinkFromList("https://www.imdb.com/list/ls079342176/");
-        List<String> pageList = list.getPageUrl();
-        int threadCounter = 0;
-        List<Thread> threadList = new ArrayList<>();
-        for (String s : pageList) {
-            if (threadCounter == 2) break;
-            ImdbImageFinder scraper = new ImdbImageFinder(s, threadCounter);
-            threadList.add(threadCounter, scraper.getThread());
-            threadCounter++;
-        }
-        try {
-            threadList.get(0).join();
-            threadList.get(1).join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 //        String[] Images = {
 //                "https://m.media-amazon.com/images/M/MV5BODA5ODY3NjY5OV5BMl5BanBnXkFtZTgwOTcyMzkxMzE@._V1_.jpg",
 //                "https://m.media-amazon.com/images/M/MV5BODM4NzkyNjcxOV5BMl5BanBnXkFtZTgwMDgyMzkxMzE@._V1_.jpg"
 //        };
 
-        List<String> ImdbImages = ImdbImageFinder.ImdbImages;
         resp.setContentType("text/json");
         String path = req.getServletPath();
         String url = req.getParameter("url");
@@ -73,7 +56,33 @@ public class ImageFinder extends HttpServlet {
 //			resp.getWriter().print(GSON.toJson(imdbImages));
         } else {
             System.out.println("Got request of:" + path + " with query param:" + url);
+
+            ImdbLinkFromList list = new ImdbLinkFromList(url);
+            List<String> pageList = list.getPageUrl();
+            int threadCounter = 0;
+            List<Thread> threadList = new ArrayList<>();
+            for (String s : pageList) {
+                if (threadCounter == 2) break;
+                ImdbImageFinder scraper = new ImdbImageFinder(s, threadCounter);
+                threadList.add(threadCounter, scraper.getThread());
+                threadCounter++;
+            }
+            try {
+                threadList.get(0).join();
+                threadList.get(1).join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            List<String> ImdbImages = new ArrayList<>(ImdbImageFinder.ImdbImages);
+            System.out.println(ImdbImages.size());
+            //emptying the arraylist
+            ImdbImageFinder.ImdbImages.clear();
+
+            System.out.println(ImdbImageFinder.ImdbImages.size());
+
             resp.getWriter().print(GSON.toJson(ImdbImages));
+
         }
     }
 }
