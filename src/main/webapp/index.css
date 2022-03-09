@@ -28,7 +28,7 @@ form{
 
 .searchTerm {
     width: 100%;
-    border: 3px solid #26a974;
+    border: 5px solid #26a974;
     border-right: none;
     padding: 5px;
     height: 36px;
@@ -45,7 +45,7 @@ form{
 .searchButton {
     width: 40px;
     height: 36px;
-    border: 1px solid #26a974;
+    border: 3px solid #26a974;
     background: #26a974;
     text-align: center;
     color: #fff;
@@ -67,7 +67,7 @@ form{
     color: #666666;
 }
 #search:hover{
-    border: 1px solid #227a4e;
+    border: 3px solid #26a974;
 
 }
 
@@ -80,7 +80,6 @@ form{
 
 .content{
     width: 100%;
-    background: blue;
     height: auto;
     margin: 0 auto;
     padding: 10px;
@@ -102,6 +101,7 @@ form{
 
 .dots-9 {
 
+    display: none;
     margin: 0 auto;
     width:12px;
     height:12px;

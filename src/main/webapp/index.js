@@ -27,6 +27,7 @@ updateList = function (response) {
         resultList.appendChild(img);
         enableButton("submit");
         enableInput("search");
+        hideLoading("loading");
     }
 }
 
@@ -41,8 +42,10 @@ document.querySelector('button').addEventListener("click", function (event) {
     event.preventDefault();
     var input = document.getElementById("search").value;
     if (input.length > 0) {
+
         disableButton("submit");
         disableInput("search");
+        showLoading("loading");
     }
     makeApiCall('/main?url=' + urlInput.value, 'POST', null, updateList);
 });
@@ -60,4 +63,10 @@ disableInput = function (id) {
 }
 enableInput = function (id) {
     document.getElementById(id).disabled = false;
+}
+showLoading = function(id){
+    document.getElementById(id).style.display = "flex";
+}
+hideLoading = function(id){
+    document.getElementById(id).style.display = "none";
 }
