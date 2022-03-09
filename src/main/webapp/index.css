@@ -35,10 +35,11 @@ form{
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #606060;
+    transition-duration: 0.6s;
 }
 
 .searchTerm:focus{
-    color: #000000;
+    color: #050505;
 }
 
 .searchButton {
@@ -51,12 +52,23 @@ form{
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
+    transition-duration: 0.6s;
+}
+.searchButton:hover {
+    border: 3px solid #26a974;
+    background: #ffffff;
+    color: #26a974;
+
 }
 .searchButton:disabled,
 .searchButton[disabled]{
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
+}
+#search:hover{
+    border: 1px solid #227a4e;
+
 }
 
 #search:disabled,
