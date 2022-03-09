@@ -1,5 +1,6 @@
 package com.eulerity.hackathon.imdb;
 
+import com.eulerity.hackathon.imagefinder.ImageFinder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,6 +15,7 @@ public class ImdbImageFinder  implements Runnable {
     public int num;
     public static List<String> ImdbImages = new ArrayList<>();
     Thread  thread;
+
 
     //Constructor
     public ImdbImageFinder(String movieUrl, int num){
