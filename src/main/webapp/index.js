@@ -26,6 +26,7 @@ updateList = function(response) {
         img.src = response[i];
         resultList.appendChild(img);
         enableButton("submit");
+        enableInput("search");
     }
 }
 
@@ -39,6 +40,7 @@ makeApiCall = function(url, method, obj, callback) {
 document.querySelector('button').addEventListener("click", function(event) {
     event.preventDefault();
     disableButton("submit");
+    disableInput("search");
     makeApiCall('/main?url=' + urlInput.value, 'POST', null, updateList);
 });
 
@@ -47,5 +49,12 @@ disableButton = function(id){
     // setTimeout(function(){document.getElementById(id).disabled = false;},5000);
 }
 enableButton = function(id){
+    document.getElementById(id).disabled =false;
+}
+disableInput = function(id){
+    document.getElementById(id).disabled = true;
+    // setTimeout(function(){document.getElementById(id).disabled = false;},5000);
+}
+enableInput = function(id){
     document.getElementById(id).disabled =false;
 }
