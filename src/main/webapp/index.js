@@ -38,7 +38,7 @@ makeApiCall = function (url, method, obj, callback) {
     xhr.send(obj ? obj instanceof FormData || obj.constructor == String ? obj : JSON.stringify(obj) : null);
 }
 
-document.querySelector('button').addEventListener("click", function (event) {
+document.querySelector('.searchButton').addEventListener("click", function (event) {
     event.preventDefault();
     var input = document.getElementById("search").value;
     if (input.length > 0) {
