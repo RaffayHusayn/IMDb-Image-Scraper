@@ -50,6 +50,24 @@ document.querySelector('.searchButton').addEventListener("click", function (even
     makeApiCall('/main?url=' + urlInput.value, 'POST', null, updateList);
 });
 
+document.querySelector("#suggestion1").addEventListener("click", function(event){
+   var suggestionUrl = document.getElementById("suggestion1").textContent;
+   document.getElementById("search").value = suggestionUrl;
+});
+
+document.querySelector("#suggestion2").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestion2").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+
+document.querySelector("#suggestion3").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestion3").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+document.querySelector("#suggestion4").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestion4").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
 disableButton = function (id) {
     document.getElementById(id).disabled = true;
     // setTimeout(function(){document.getElementById(id).disabled = false;},5000);
