@@ -7,28 +7,25 @@ body{
 }
 
 .input {
-    width: 60%;
+    width: 40%;
     position: relative;
     display: flex;
     margin: 0 auto;
 }
 .search {
     width: 100%;
-    /*display: flex;*/
     height: auto;
     margin: 0 auto;
-    padding: 10px;
+    padding: 40px;
     position: relative;
 }
 form{
     width: 100%;
-    /*position: relative;*/
-    /*display: flex;*/
 }
 
 .searchTerm {
     width: 100%;
-    border: 5px solid #26a974;
+    border: 5px solid #2881e7;
     border-right: none;
     padding: 5px;
     height: 36px;
@@ -45,8 +42,8 @@ form{
 .searchButton {
     width: 40px;
     height: 36px;
-    border: 3px solid #26a974;
-    background: #26a974;
+    border: 3px solid #2881e7;
+    background: #2881e7;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -55,9 +52,9 @@ form{
     transition-duration: 0.4s;
 }
 .searchButton:hover {
-    border: 5px solid #26a974;
+    border: 5px solid #2881e7;
     background: #ffffff;
-    color: #26a974;
+    color: #2881e7;
 
 }
 .searchButton:disabled,
@@ -67,7 +64,7 @@ form{
     color: #666666;
 }
 #search:hover{
-    border: 3px solid #26a974;
+    border: 3px solid #2881e7;
 
 }
 
@@ -88,16 +85,7 @@ form{
 }
 
 
-
-
-
-
-
-
-
-
-
-
+/*======================== loading animation CSS =================================*/
 
 .dots-9 {
 
@@ -136,7 +124,8 @@ form{
 }
 
 
-/*=========== suggestions ============*/
+/*====================== suggestions divs CSS ===========================*/
+
 .suggestionContainer{
     text-align:center
  }
