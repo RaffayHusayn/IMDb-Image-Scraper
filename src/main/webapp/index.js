@@ -51,8 +51,7 @@ document.querySelector('.searchButton').addEventListener("click", function (even
 });
 
 document.querySelector("#suggestion1").addEventListener("click", function(event){
-   var suggestionUrl = document.getElementById("suggestion1").textContent;
-   document.getElementById("search").value = suggestionUrl;
+    document.getElementById("search").value = document.getElementById("suggestion1").textContent;
 });
 
 document.querySelector("#suggestion2").addEventListener("click", function(event){
@@ -86,16 +85,32 @@ document.querySelector("#suggestionMovie4").addEventListener("click", function(e
     var suggestionUrl = document.getElementById("suggestionMovie4").textContent;
     document.getElementById("search").value = suggestionUrl;
 });
+document.querySelector("#suggestionUnsplash1").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionUnsplash1").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+
+document.querySelector("#suggestionUnsplash2").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionUnsplash2").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+
+document.querySelector("#suggestionUnsplash3").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionUnsplash3").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+document.querySelector("#suggestionUnsplash4").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionUnsplash4").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
 disableButton = function (id) {
     document.getElementById(id).disabled = true;
-    // setTimeout(function(){document.getElementById(id).disabled = false;},5000);
 }
 enableButton = function (id) {
     document.getElementById(id).disabled = false;
 }
 disableInput = function (id) {
     document.getElementById(id).disabled = true;
-    // setTimeout(function(){document.getElementById(id).disabled = false;},5000);
 }
 enableInput = function (id) {
     document.getElementById(id).disabled = false;
