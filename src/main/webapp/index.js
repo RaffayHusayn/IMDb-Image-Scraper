@@ -68,6 +68,24 @@ document.querySelector("#suggestion4").addEventListener("click", function(event)
     var suggestionUrl = document.getElementById("suggestion4").textContent;
     document.getElementById("search").value = suggestionUrl;
 });
+document.querySelector("#suggestionMovie1").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionMovie1").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+
+document.querySelector("#suggestionMovie2").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionMovie2").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+
+document.querySelector("#suggestionMovie3").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionMovie3").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
+document.querySelector("#suggestionMovie4").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionMovie4").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
 disableButton = function (id) {
     document.getElementById(id).disabled = true;
     // setTimeout(function(){document.getElementById(id).disabled = false;},5000);

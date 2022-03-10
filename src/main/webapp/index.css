@@ -158,3 +158,22 @@ form{
 .suggestions:hover {
     background-color: rgba(38, 169, 116, 0.43);
 }
+
+.suggestionsMovie {
+    background-color: rgba(38, 130, 169, 0.8);
+    border: none;
+    padding: 16px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+    color:black;
+    border-radius: 30px;
+}
+
+
+.suggestionsMovie:hover {
+    background-color: rgba(38, 130, 169, 0.61);
+}
