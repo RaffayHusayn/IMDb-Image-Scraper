@@ -5,7 +5,7 @@ import com.google.common.cache.CacheLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImdbCacheLoader extends CacheLoader<String, List<String>> {
+public class ImdbListCacheLoader extends CacheLoader<String, List<String>> {
     @Override
     public List<String> load(String movieUrl) throws Exception {
         ImdbLinkFromList list = new ImdbLinkFromList(movieUrl);

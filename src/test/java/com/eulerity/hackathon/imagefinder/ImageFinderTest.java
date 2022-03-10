@@ -39,12 +39,12 @@ public class ImageFinderTest {
 		Mockito.when(request.getSession()).thenReturn(session);
 	}
 	
-  @Test
-  public void test() throws IOException, ServletException {
-		Mockito.when(request.getServletPath()).thenReturn("/main");
-		new ImageFinder().doPost(request, response);
-//		Assert.assertEquals(new Gson().toJson(ImageFinder.imdbImages), sw.toString());
-  }
+//  @Test
+//  public void test() throws IOException, ServletException {
+//		Mockito.when(request.getServletPath()).thenReturn("/main");
+//		new ImageFinder().doPost(request, response);
+////		Assert.assertEquals(new Gson().toJson(ImageFinder.imdbImages), sw.toString());
+//  }
 }
 
 

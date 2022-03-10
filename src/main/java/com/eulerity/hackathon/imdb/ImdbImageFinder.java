@@ -16,7 +16,6 @@ public class ImdbImageFinder  implements Runnable {
     public String url;
     public int num;
     public static Set<String> ImdbImagesSet = new HashSet<>();
-//    public static List<String> ImdbImages = new ArrayList<>();
     Thread  thread;
 
 

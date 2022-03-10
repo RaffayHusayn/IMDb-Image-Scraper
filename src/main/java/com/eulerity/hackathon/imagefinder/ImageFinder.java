@@ -1,10 +1,7 @@
 package com.eulerity.hackathon.imagefinder;
 
-import com.eulerity.hackathon.imdb.ImdbCacheLoader;
-import com.eulerity.hackathon.imdb.ImdbImageFinder;
-import com.eulerity.hackathon.imdb.ImdbLinkFromList;
+import com.eulerity.hackathon.imdb.ImdbListCacheLoader;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +26,7 @@ public class ImageFinder extends HttpServlet {
     LoadingCache<String, List<String>> imdbCache = CacheBuilder.newBuilder()
             .maximumSize(100)
             .expireAfterWrite(30, TimeUnit.MINUTES)
-            .build(new ImdbCacheLoader());
+            .build(new ImdbListCacheLoader());
 
 
     @Override
@@ -51,13 +47,6 @@ public class ImageFinder extends HttpServlet {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-                System.out.println(ImdbImages.size());
-                //emptying the arraylist
-//                ImdbImageFinder.ImdbImages.clear();
-
-//                System.out.println(ImdbImageFinder.ImdbImages.size());
-                System.out.println("Cache size : "+ imdbCache.size());
-                System.out.println(imdbCache.asMap().keySet());
 
                 resp.getWriter().print(GSON.toJson(ImdbImages));
             }else{
