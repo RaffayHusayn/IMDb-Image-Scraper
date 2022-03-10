@@ -1,11 +1,8 @@
 package com.eulerity.hackathon.imagefinder;
 
 import com.eulerity.hackathon.imdb_single_page.ImdbPageCacheLoader;
-import com.eulerity.hackathon.imdb_single_page.ImdbPageImageFinder;
-import com.eulerity.hackathon.imdb_user_list.ImdbUserListImageFinder;
 import com.eulerity.hackathon.imdb_user_list.ImdbListCacheLoader;
 import com.eulerity.hackathon.unsplash.UnsplashCacheLoader;
-import com.eulerity.hackathon.unsplash.UnsplashImageFinder;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
 import com.google.gson.Gson;
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;

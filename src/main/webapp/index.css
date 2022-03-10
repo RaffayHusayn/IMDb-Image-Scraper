@@ -101,10 +101,10 @@ form{
     position: absolute;
     inset:0;
     border-radius:50%;
-    background:#26a974;
+    background:#2881e7;
 }
 .dots-9::before {
-    box-shadow: 24px 0 #26a974;
+    box-shadow: 24px 0 #2881e7;
     transform:translateX(-24px);
     animation:d9-1 1s infinite linear alternate;
 }
@@ -117,7 +117,7 @@ form{
     50%,100%{transform:scale(-1)}
 }
 @keyframes d9-1 {
-    100%{box-shadow: 48px 0 #26a974}
+    100%{box-shadow: 48px 0 #2881e7}
 }
 @keyframes d9-2 {
     100%{transform:translateX(12px) rotate(-180deg) translateX(12px)}
