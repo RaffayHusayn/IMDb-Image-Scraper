@@ -41,7 +41,7 @@ makeApiCall = function (url, method, obj, callback) {
 document.querySelector('.searchButton').addEventListener("click", function (event) {
     event.preventDefault();
     var input = document.getElementById("search").value;
-    if (input.length > 0) {
+    if (input.length > 20) {
 
         disableButton("submit");
         disableInput("search");
