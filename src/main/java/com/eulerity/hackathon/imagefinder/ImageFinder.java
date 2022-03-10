@@ -29,11 +29,11 @@ public class ImageFinder extends HttpServlet {
     private static final long serialVersionUID = 1L;
     LoadingCache<String, List<String>> imdbListCache = CacheBuilder.newBuilder()
             .maximumSize(50)
-            .expireAfterWrite(30, TimeUnit.MINUTES)
+            .expireAfterWrite(60, TimeUnit.MINUTES)
             .build(new ImdbListCacheLoader());
     LoadingCache<String, List<String>> imdbPageCache = CacheBuilder.newBuilder()
             .maximumSize(50)
-            .expireAfterWrite(30, TimeUnit.MINUTES)
+            .expireAfterWrite(60, TimeUnit.MINUTES)
             .build(new ImdbPageCacheLoader());
 
     @Override
