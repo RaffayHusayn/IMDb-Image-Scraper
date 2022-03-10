@@ -1,6 +1,5 @@
-package com.eulerity.hackathon.imdb;
+package com.eulerity.hackathon.imdb_single_page;
 
-import com.eulerity.hackathon.imagefinder.ImageFinder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,21 +11,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ImdbImageFinder  implements Runnable {
-    public String url;
-    public int num;
-    public static Set<String> ImdbImagesSet = new HashSet<>();
-    Thread  thread;
-
+public class ImdbPageImageFinder {
+    private String url;
+    private static Set<String> ImdbImagesSet = new HashSet<>();
 
     //Constructor
-    public ImdbImageFinder(String movieUrl, int num){
-        System.out.println("Crawler Created" + num);
+    public ImdbPageImageFinder(String movieUrl){
         this.url = movieUrl;
-        this.num = num;
-        thread = new Thread(this);
-        thread.start();
-
+        extractPhotosLink(url);
     }
 
 
@@ -88,20 +80,9 @@ public class ImdbImageFinder  implements Runnable {
         return "";
     }
 
-    @Override
-    public void run() {
-        System.out.println("thread is starting, calling extractPhotosLInks");
-        extractPhotosLink(url);
-    }
-
-    public Thread getThread() {
-        return thread;
-    }
-
     public static List<String> getImages(){
         List<String> ImdbImages= new ArrayList<>(ImdbImagesSet);
         ImdbImagesSet.clear();
         return ImdbImages;
     }
 }
-

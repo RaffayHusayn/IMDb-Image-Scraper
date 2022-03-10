@@ -1,7 +1,9 @@
 package com.eulerity.hackathon.imagefinder;
 
-import com.eulerity.hackathon.imdb.ImdbImageFinder;
-import com.eulerity.hackathon.imdb.ImdbListCacheLoader;
+import com.eulerity.hackathon.imdb_single_page.ImdbPageCacheLoader;
+import com.eulerity.hackathon.imdb_single_page.ImdbPageImageFinder;
+import com.eulerity.hackathon.imdb_user_list.ImdbUserListImageFinder;
+import com.eulerity.hackathon.imdb_user_list.ImdbListCacheLoader;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
 import com.google.gson.Gson;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @WebServlet(
@@ -25,10 +28,13 @@ public class ImageFinder extends HttpServlet {
     protected static final Gson GSON = new GsonBuilder().create();
     private static final long serialVersionUID = 1L;
     LoadingCache<String, List<String>> imdbListCache = CacheBuilder.newBuilder()
-            .maximumSize(100)
+            .maximumSize(50)
             .expireAfterWrite(30, TimeUnit.MINUTES)
             .build(new ImdbListCacheLoader());
-
+    LoadingCache<String, List<String>> imdbPageCache = CacheBuilder.newBuilder()
+            .maximumSize(50)
+            .expireAfterWrite(30, TimeUnit.MINUTES)
+            .build(new ImdbPageCacheLoader());
 
     @Override
     protected final void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,37 +42,32 @@ public class ImageFinder extends HttpServlet {
         resp.setContentType("text/json");
         String path = req.getServletPath();
         String url = req.getParameter("url");
-        String imdbString = "https://www.imdb.com/list/";
+        String imdbListString = "https://www.imdb.com/list/";
+        String imdbPageString = "https://www.imdb.com/title/";
 
-        if (url.length() >= imdbString.length()) {
-            if (url.startsWith(imdbString)) {
+        if (url.length() >= Math.min(imdbPageString.length(),imdbListString.length())) {
+            if (url.startsWith(imdbListString)) {
                 System.out.println("Got request of:" + path + " with query param:" + url);
 
-//                List<String> ImdbImages = null;
-//                try {
-//                    ImdbImages = imdbListCache.get(url);
-//                } catch (ExecutionException e) {
-//                    e.printStackTrace();
-//                }
-
-
-
-
-
-                ImdbImageFinder scraper = new ImdbImageFinder("https://www.imdb.com/title/tt0119217", 1);
+                List<String> ImdbListImages = null;
                 try {
-                    scraper.getThread().join();
-                } catch (InterruptedException e) {
+                    ImdbListImages = imdbListCache.get(url);
+                } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
 
-                List<String> ImdbImages = new ArrayList<>(ImdbImageFinder.getImages());
+                resp.getWriter().print(GSON.toJson(ImdbListImages));
+            }else if(url.startsWith(imdbPageString)) {
 
+                List<String> ImdbPageImages = null;
+                try {
+                    ImdbPageImages = imdbPageCache.get(url);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                resp.getWriter().print(GSON.toJson(ImdbPageImages));
 
-
-
-                resp.getWriter().print(GSON.toJson(ImdbImages));
-            } else {
+            }else {
                 System.out.println("incorrect url");
             }
 

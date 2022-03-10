@@ -1,4 +1,4 @@
-package com.eulerity.hackathon.imdb;
+package com.eulerity.hackathon.imdb_user_list;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

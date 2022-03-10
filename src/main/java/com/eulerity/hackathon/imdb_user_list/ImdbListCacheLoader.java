@@ -1,4 +1,4 @@
-package com.eulerity.hackathon.imdb;
+package com.eulerity.hackathon.imdb_user_list;
 
 import com.google.common.cache.CacheLoader;
 
@@ -14,7 +14,7 @@ public class ImdbListCacheLoader extends CacheLoader<String, List<String>> {
         List<Thread> threadList = new ArrayList<>();
         for (String s : pageList) {
             if (threadCounter == 2) break;
-            ImdbImageFinder scraper = new ImdbImageFinder(s, threadCounter);
+            ImdbUserListImageFinder scraper = new ImdbUserListImageFinder(s, threadCounter);
             threadList.add(threadCounter, scraper.getThread());
             threadCounter++;
         }
@@ -25,7 +25,7 @@ public class ImdbListCacheLoader extends CacheLoader<String, List<String>> {
             e.printStackTrace();
         }
 
-        List<String> ImdbImages = new ArrayList<>(ImdbImageFinder.getImages());
+        List<String> ImdbImages = new ArrayList<>(ImdbUserListImageFinder.getImages());
         return ImdbImages;
     }
 }
