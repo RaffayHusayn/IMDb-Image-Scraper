@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImdbLinkFromList {
+public class ImdbGetPagesFromList {
     private final String listUrl;
-    public ImdbLinkFromList(String listUrl){
+    public ImdbGetPagesFromList(String listUrl){
         this.listUrl = listUrl;
     }
     public List<String> getPageUrl() throws IOException {

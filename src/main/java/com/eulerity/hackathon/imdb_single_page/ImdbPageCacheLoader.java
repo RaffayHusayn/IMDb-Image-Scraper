@@ -9,6 +9,6 @@ public class ImdbPageCacheLoader extends CacheLoader<String, List<String>> {
     public List<String> load(String pageUrl){
 
         ImdbPageImageFinder scraper = new ImdbPageImageFinder(pageUrl);
-        return ImdbPageImageFinder.getImages();
+        return scraper.getImages();
     }
 }

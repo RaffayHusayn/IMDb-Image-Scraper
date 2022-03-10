@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class ImdbPageImageFinder {
     private String url;
-    private static Set<String> ImdbImagesSet = new HashSet<>();
+    private  Set<String> ImdbImagesSet = new HashSet<>();
 
     //Constructor
     public ImdbPageImageFinder(String movieUrl){
@@ -80,7 +80,7 @@ public class ImdbPageImageFinder {
         return "";
     }
 
-    public static List<String> getImages(){
+    public List<String> getImages(){
         List<String> ImdbImages= new ArrayList<>(ImdbImagesSet);
         ImdbImagesSet.clear();
         return ImdbImages;

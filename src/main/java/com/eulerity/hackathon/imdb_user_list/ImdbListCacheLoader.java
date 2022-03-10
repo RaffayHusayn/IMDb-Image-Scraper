@@ -8,7 +8,7 @@ import java.util.List;
 public class ImdbListCacheLoader extends CacheLoader<String, List<String>> {
     @Override
     public List<String> load(String movieUrl) throws Exception {
-        ImdbLinkFromList list = new ImdbLinkFromList(movieUrl);
+        ImdbGetPagesFromList list = new ImdbGetPagesFromList(movieUrl);
         List<String> pageList = list.getPageUrl();
         int threadCounter = 0;
         List<Thread> threadList = new ArrayList<>();
