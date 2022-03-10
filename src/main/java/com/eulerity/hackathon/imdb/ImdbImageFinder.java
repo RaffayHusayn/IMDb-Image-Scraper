@@ -31,10 +31,14 @@ public class ImdbImageFinder  implements Runnable {
 
 
     public void extractPhotosLink(String movieUrl) {
+        System.out.println("movie url : "+ movieUrl);
         String photosPage = "";
         try {
             Document doc = Jsoup.connect(movieUrl).get();
             photosPage = "https://imdb.com" + doc.select("a.ipc-button.ipc-button--single-padding.ipc-button--center-align-content.ipc-button--default-height.ipc-button--core-baseAlt.ipc-button--theme-baseAlt.ipc-button--on-onBase.ipc-secondary-button.Link__MediaLinkButton-sc-yyqs5y-3.cVnyJL:nth-of-type(2)").attr("href");
+
+            System.out.println(photosPage);
+
             scraper(photosPage);
             System.out.println(photosPage);
 
@@ -86,6 +90,7 @@ public class ImdbImageFinder  implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("thread is starting, calling extractPhotosLInks");
         extractPhotosLink(url);
     }
 

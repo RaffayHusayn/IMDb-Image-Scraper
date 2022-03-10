@@ -1,5 +1,6 @@
 package com.eulerity.hackathon.imagefinder;
 
+import com.eulerity.hackathon.imdb.ImdbImageFinder;
 import com.eulerity.hackathon.imdb.ImdbListCacheLoader;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @WebServlet(
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class ImageFinder extends HttpServlet {
     protected static final Gson GSON = new GsonBuilder().create();
     private static final long serialVersionUID = 1L;
-    LoadingCache<String, List<String>> imdbCache = CacheBuilder.newBuilder()
+    LoadingCache<String, List<String>> imdbListCache = CacheBuilder.newBuilder()
             .maximumSize(100)
             .expireAfterWrite(30, TimeUnit.MINUTES)
             .build(new ImdbListCacheLoader());
@@ -41,15 +42,31 @@ public class ImageFinder extends HttpServlet {
             if (url.startsWith(imdbString)) {
                 System.out.println("Got request of:" + path + " with query param:" + url);
 
-                List<String> ImdbImages = null;
+//                List<String> ImdbImages = null;
+//                try {
+//                    ImdbImages = imdbListCache.get(url);
+//                } catch (ExecutionException e) {
+//                    e.printStackTrace();
+//                }
+
+
+
+
+
+                ImdbImageFinder scraper = new ImdbImageFinder("https://www.imdb.com/title/tt0119217", 1);
                 try {
-                    ImdbImages = imdbCache.get(url);
-                } catch (ExecutionException e) {
+                    scraper.getThread().join();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+                List<String> ImdbImages = new ArrayList<>(ImdbImageFinder.getImages());
+
+
+
+
                 resp.getWriter().print(GSON.toJson(ImdbImages));
-            }else{
+            } else {
                 System.out.println("incorrect url");
             }
 
