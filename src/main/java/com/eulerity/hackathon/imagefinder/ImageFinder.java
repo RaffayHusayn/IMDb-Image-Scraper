@@ -53,9 +53,9 @@ public class ImageFinder extends HttpServlet {
                 }
                 System.out.println(ImdbImages.size());
                 //emptying the arraylist
-                ImdbImageFinder.ImdbImages.clear();
+//                ImdbImageFinder.ImdbImages.clear();
 
-                System.out.println(ImdbImageFinder.ImdbImages.size());
+//                System.out.println(ImdbImageFinder.ImdbImages.size());
                 System.out.println("Cache size : "+ imdbCache.size());
                 System.out.println(imdbCache.asMap().keySet());
 

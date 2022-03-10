@@ -25,7 +25,7 @@ public class ImdbCacheLoader extends CacheLoader<String, List<String>> {
             e.printStackTrace();
         }
 
-        List<String> ImdbImages = new ArrayList<>(ImdbImageFinder.ImdbImages);
+        List<String> ImdbImages = new ArrayList<>(ImdbImageFinder.getImages());
         return ImdbImages;
     }
 }

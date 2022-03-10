@@ -8,12 +8,15 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ImdbImageFinder  implements Runnable {
     public String url;
     public int num;
-    public static List<String> ImdbImages = new ArrayList<>();
+    public static Set<String> ImdbImagesSet = new HashSet<>();
+//    public static List<String> ImdbImages = new ArrayList<>();
     Thread  thread;
 
 
@@ -68,10 +71,10 @@ public class ImdbImageFinder  implements Runnable {
             if(pic == "") {
                 String pic2 = doc.select("div.MediaViewerImagestyles__PortraitContainer-sc-1qk433p-2.iUyzNI > img").attr("src");
                 System.out.println("pic link: " + pic2);
-                ImdbImages.add(pic2);
+                ImdbImagesSet.add(pic2);
             }else{
                 System.out.println("pic link: " + pic);
-                ImdbImages.add(pic);
+                ImdbImagesSet.add(pic);
             }
 
 
@@ -91,7 +94,9 @@ public class ImdbImageFinder  implements Runnable {
         return thread;
     }
 
-    public List<String> getImages(){
+    public static List<String> getImages(){
+        List<String> ImdbImages= new ArrayList<>(ImdbImagesSet);
+        ImdbImagesSet.clear();
         return ImdbImages;
     }
 }
