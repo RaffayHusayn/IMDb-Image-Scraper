@@ -41,7 +41,7 @@ makeApiCall = function (url, method, obj, callback) {
 document.querySelector('.searchButton').addEventListener("click", function (event) {
     event.preventDefault();
     var input = document.getElementById("search").value;
-    if (input.length > 20) {
+    if (input.startsWith("https://unsplash.com") || input.startsWith("https://www.imdb.com/list/") || input.startsWith("https://www.imdb.com/title/")) {
 
         disableButton("submit");
         disableInput("search");

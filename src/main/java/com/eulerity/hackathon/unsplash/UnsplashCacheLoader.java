@@ -8,6 +8,7 @@ public class UnsplashCacheLoader extends CacheLoader<String, List<String>> {
     @Override
     public List<String> load(String url) throws Exception {
         UnsplashImageFinder scraper = new UnsplashImageFinder(url);
+        scraper.scrape();
         return scraper.getList();
     }
 }
