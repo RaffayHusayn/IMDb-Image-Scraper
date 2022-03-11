@@ -12,42 +12,49 @@ import java.util.List;
 import java.util.Set;
 
 public class ImdbUserListImageFinder implements Runnable {
-    public String url;
-    public int num;
-    public static Set<String> ImdbImagesSet = new HashSet<>();
-    Thread  thread;
+    private static Set<String> ImdbImagesSet = new HashSet<>();
+    Thread thread;
+    private String url;
 
 
     //Constructor
-    public ImdbUserListImageFinder(String movieUrl, int num){
-        System.out.println("Crawler Created" + num);
+    public ImdbUserListImageFinder(String movieUrl, int num) {
+        System.out.println("New Thread : Crawler # " + num);
         this.url = movieUrl;
-        this.num = num;
         thread = new Thread(this);
         thread.start();
 
     }
 
+    public static List<String> getImages() {
+        List<String> ImdbImages = new ArrayList<>(ImdbImagesSet);
+        ImdbImagesSet.clear();
+        return ImdbImages;
+    }
 
-    public void extractPhotosLink(String movieUrl) {
-        System.out.println("movie url : "+ movieUrl);
+    @Override
+    public void run() {
+        extractPhotosLink(url);
+    }
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    private void extractPhotosLink(String movieUrl) {
         String photosPage = "";
         try {
             Document doc = Jsoup.connect(movieUrl).get();
             photosPage = "https://imdb.com" + doc.select("a.ipc-button.ipc-button--single-padding.ipc-button--center-align-content.ipc-button--default-height.ipc-button--core-baseAlt.ipc-button--theme-baseAlt.ipc-button--on-onBase.ipc-secondary-button.Link__MediaLinkButton-sc-yyqs5y-3.cVnyJL:nth-of-type(2)").attr("href");
 
-            System.out.println(photosPage);
-
-            scraper(photosPage);
-            System.out.println(photosPage);
-
+            scrape(photosPage);
 
         } catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public String scraper(String url) {
+    private String scrape(String url) {
         String link = "";
         try {
             Document doc = Jsoup.connect(url).get();
@@ -56,51 +63,34 @@ public class ImdbUserListImageFinder implements Runnable {
                 String pic = element.getElementsByTag("a").attr("href");
                 String fullLink = "https://imdb.com" + pic;
 
-                System.out.println(fullLink);
                 photoFromLink(fullLink);
             }
         } catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         return link;
     }
 
-    public String photoFromLink(String url) {
+    private String photoFromLink(String url) {
         try {
             Document doc = Jsoup.connect(url).get();
             String pic = doc.select("div.MediaViewerImagestyles__LandscapeContainer-sc-1qk433p-3.kXRNYt > img").attr("src");
-            if(pic == "") {
+            if (pic == "") {
                 String pic2 = doc.select("div.MediaViewerImagestyles__PortraitContainer-sc-1qk433p-2.iUyzNI > img").attr("src");
-                System.out.println("pic link: " + pic2);
+                System.out.println("Scraping pics : " + pic2);
                 ImdbImagesSet.add(pic2);
-            }else{
-                System.out.println("pic link: " + pic);
+            } else {
                 ImdbImagesSet.add(pic);
+                System.out.println("Scraping pics : " + pic);
             }
 
-
-
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
         return "";
     }
 
-    @Override
-    public void run() {
-        System.out.println("thread is starting, calling extractPhotosLInks");
-        extractPhotosLink(url);
-    }
 
-    public Thread getThread() {
-        return thread;
-    }
-
-    public static List<String> getImages(){
-        List<String> ImdbImages= new ArrayList<>(ImdbImagesSet);
-        ImdbImagesSet.clear();
-        return ImdbImages;
-    }
 }
 

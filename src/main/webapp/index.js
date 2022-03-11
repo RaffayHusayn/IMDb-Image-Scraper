@@ -121,3 +121,93 @@ showLoading = function(id){
 hideLoading = function(id){
     document.getElementById(id).style.display = "none";
 }
+
+/*
+========================= changing text on hover of suggestion buttons ====================================
+ */
+
+//========= IMDb Userlists  ======================
+document.querySelector("#suggestion1").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/list/ls079342176";
+});
+document.querySelector("#suggestion1").addEventListener("mouseout", function(){
+    this.textContent = "IMDb Top 25 List";
+});
+
+document.querySelector("#suggestion2").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/list/ls046058631";
+});
+document.querySelector("#suggestion2").addEventListener("mouseout", function(){
+    this.textContent = "Best Dramas List";
+});
+
+document.querySelector("#suggestion3").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/list/ls086383835";
+});
+document.querySelector("#suggestion3").addEventListener("mouseout", function(){
+    this.textContent = "Best Animations List";
+});
+
+document.querySelector("#suggestion4").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/list/ls089636378/";
+});
+document.querySelector("#suggestion4").addEventListener("mouseout", function(){
+    this.textContent = "Life Changing List";
+});
+//========= Movie Page ======================
+document.querySelector("#suggestionMovie1").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/title/tt0119217";
+});
+document.querySelector("#suggestionMovie1").addEventListener("mouseout", function(){
+    this.textContent = "Good Will Hunting";
+});
+
+document.querySelector("#suggestionMovie2").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/title/tt0470752";
+});
+document.querySelector("#suggestionMovie2").addEventListener("mouseout", function(){
+    this.textContent = "Ex Machina";
+});
+
+document.querySelector("#suggestionMovie3").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/title/tt2591814";
+});
+document.querySelector("#suggestionMovie3").addEventListener("mouseout", function(){
+    this.textContent = "The Garden of Words";
+});
+
+document.querySelector("#suggestionMovie4").addEventListener("mouseover", function(){
+    this.textContent = "https://www.imdb.com/title/tt0094625";
+});
+document.querySelector("#suggestionMovie4").addEventListener("mouseout", function(){
+    this.textContent = "Akira";
+});
+
+//========= Unsplash Page ======================
+document.querySelector("#suggestionUnsplash1").addEventListener("mouseover", function(){
+    this.textContent = "https://unsplash.com";
+});
+document.querySelector("#suggestionUnsplash1").addEventListener("mouseout", function(){
+    this.textContent = "Homepage (Unsplash)";
+});
+
+document.querySelector("#suggestionUnsplash2").addEventListener("mouseover", function(){
+    this.textContent = "https://unsplash.com/t/current-events";
+});
+document.querySelector("#suggestionUnsplash2").addEventListener("mouseout", function(){
+    this.textContent = "Current Events (Unsplash)";
+});
+
+document.querySelector("#suggestionUnsplash3").addEventListener("mouseover", function(){
+    this.textContent = "https://unsplash.com/t/people";
+});
+document.querySelector("#suggestionUnsplash3").addEventListener("mouseout", function(){
+    this.textContent = "People (Unsplash)";
+});
+
+document.querySelector("#suggestionUnsplash4").addEventListener("mouseover", function(){
+    this.textContent = "https://unsplash.com/t/animals";
+});
+document.querySelector("#suggestionUnsplash4").addEventListener("mouseout", function(){
+    this.textContent = "Animals (Unsplash)";
+});

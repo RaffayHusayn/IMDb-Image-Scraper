@@ -26,22 +26,19 @@ public class UnsplashImageFinder {
 
             List<String> completeHref = allHref.stream().map(s->"https://unsplash.com"+s).collect(Collectors.toList());
             extractPhotosFromList(completeHref);
-//            System.out.println(allHref);
-//            System.out.println(completeHref);
-//            System.out.println(completeHref.size());
-//            System.out.println(nav);
         }catch(Exception e){
             e.printStackTrace();
         }
     }
     public void extractPhotosFromList(List<String> urlList) throws IOException {
+        int counter = 1;
         for(String url: urlList){
-//            System.out.println("url "+ url);
             Document doc = Jsoup.connect(url).get();
             String imageUrl = doc.select("div.VQW0y.Jl9NH > img").attr("srcset");
             imageUrl = imageUrl.substring(0, imageUrl.indexOf(" "));
-//            System.out.println("image url :"+ imageUrl);
             unsplashImagesList.add(imageUrl);
+            System.out.println("Scraping pic # " + counter + " : " + imageUrl);
+            counter++;
 
         }
     }

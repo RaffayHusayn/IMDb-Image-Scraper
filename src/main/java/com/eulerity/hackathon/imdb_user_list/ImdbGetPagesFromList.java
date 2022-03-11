@@ -11,9 +11,12 @@ import java.util.List;
 
 public class ImdbGetPagesFromList {
     private final String listUrl;
-    public ImdbGetPagesFromList(String listUrl){
+
+    //constructor
+    public ImdbGetPagesFromList(String listUrl) {
         this.listUrl = listUrl;
     }
+
     public List<String> getPageUrl() throws IOException {
 
         List<String> pageUrlList = new ArrayList<>();
@@ -21,21 +24,14 @@ public class ImdbGetPagesFromList {
             Document doc = Jsoup.connect(listUrl).get();
             Elements movies = doc.select("div.lister-item.mode-detail");
             for (Element movieElement : movies) {
-
-
-                /*
-                Web Scrapping using Jsoup
-                 */
+                //Web Scrapping using Jsoup
                 String pageUrlString = movieElement.select("div.lister-item-image.ribbonize > a").attr("href");
                 String pageUrl = "http://imdb.com" + pageUrlString;
-
                 pageUrlList.add(pageUrl);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return pageUrlList;
     }
 
