@@ -187,3 +187,21 @@ form{
     background-color: rgba(251, 206, 59, 0.51);
 }
 
+.suggestionsUnsplashAllCat {
+    background-color: rgba(251, 133, 59, 0.72);
+    border: none;
+    padding: 16px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+    color:black;
+    border-radius: 30px;
+}
+
+
+.suggestionsUnsplashAllCat:hover {
+    background-color: rgba(251, 133, 59, 0.47);
+}

@@ -103,6 +103,10 @@ document.querySelector("#suggestionUnsplash4").addEventListener("click", functio
     var suggestionUrl = document.getElementById("suggestionUnsplash4").textContent;
     document.getElementById("search").value = suggestionUrl;
 });
+document.querySelector("#suggestionUnsplashAllCat1").addEventListener("click", function(event){
+    var suggestionUrl = document.getElementById("suggestionUnsplashAllCat1").textContent;
+    document.getElementById("search").value = suggestionUrl;
+});
 disableButton = function (id) {
     document.getElementById(id).disabled = true;
 }
@@ -183,12 +187,20 @@ document.querySelector("#suggestionMovie4").addEventListener("mouseout", functio
     this.textContent = "Akira";
 });
 
-//========= Unsplash Page ======================
-document.querySelector("#suggestionUnsplash1").addEventListener("mouseover", function(){
+//========= Unsplash All Categories ======================
+document.querySelector("#suggestionUnsplashAllCat1").addEventListener("mouseover", function(){
     this.textContent = "https://unsplash.com";
 });
+document.querySelector("#suggestionUnsplashAllCat1").addEventListener("mouseout", function(){
+    this.textContent = "All Categories (Unsplash)";
+});
+
+//========= Unsplash Page ======================
+document.querySelector("#suggestionUnsplash1").addEventListener("mouseover", function(){
+    this.textContent = "https://unsplash.com/t/nature";
+});
 document.querySelector("#suggestionUnsplash1").addEventListener("mouseout", function(){
-    this.textContent = "Homepage (Unsplash)";
+    this.textContent = "Nature (Unsplash)";
 });
 
 document.querySelector("#suggestionUnsplash2").addEventListener("mouseover", function(){
@@ -211,3 +223,5 @@ document.querySelector("#suggestionUnsplash4").addEventListener("mouseover", fun
 document.querySelector("#suggestionUnsplash4").addEventListener("mouseout", function(){
     this.textContent = "Animals (Unsplash)";
 });
+
+

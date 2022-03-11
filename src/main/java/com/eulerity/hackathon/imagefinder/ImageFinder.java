@@ -3,6 +3,7 @@ package com.eulerity.hackathon.imagefinder;
 import com.eulerity.hackathon.imdb_single_page.ImdbPageCacheLoader;
 import com.eulerity.hackathon.imdb_user_list.ImdbListCacheLoader;
 import com.eulerity.hackathon.unsplash.UnsplashCacheLoader;
+import com.eulerity.hackathon.unsplash_all_categories.UnsplashAllCategoryCacheLoader;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
 import com.google.gson.Gson;
@@ -37,6 +38,10 @@ public class ImageFinder extends HttpServlet {
             .maximumSize(50)
             .expireAfterWrite(60, TimeUnit.MINUTES)
             .build(new UnsplashCacheLoader());
+    LoadingCache<String, List<String>> unsplashAllCategoryCache = CacheBuilder.newBuilder()
+            .maximumSize(50)
+            .expireAfterWrite(60, TimeUnit.MINUTES)
+            .build(new UnsplashAllCategoryCacheLoader());
 
     @Override
     protected final void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,9 +51,10 @@ public class ImageFinder extends HttpServlet {
         String url = req.getParameter("url");
         String imdbListString = "https://www.imdb.com/list/";
         String imdbPageString = "https://www.imdb.com/title/";
-        String unsplashString = "https://unsplash.com";
+        String unsplashString = "https://unsplash.com/t/";
+        String unsplashAllCatString = "https://unsplash.com";
 
-        if (url.length() >=Math.min(unsplashString.length(),Math.min(imdbPageString.length(),imdbListString.length()))) {
+        if (url.length() >=Math.min(unsplashAllCatString.length(),Math.min(imdbPageString.length(),imdbListString.length()))) {
             if (url.startsWith(imdbListString)) {
                 System.out.println("Got request of:" + path + " with query param:" + url);
 
@@ -81,7 +87,16 @@ public class ImageFinder extends HttpServlet {
                 }
                 resp.getWriter().print(GSON.toJson(unsplashImages));
 
-            }else {
+            }else if(url.startsWith(unsplashAllCatString)){
+                List<String> unsplashAllCatImages = null;
+                try {
+                    unsplashAllCatImages = unsplashAllCategoryCache.get(url);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                resp.getWriter().print(GSON.toJson(unsplashAllCatImages));
+
+            } else {
                 System.out.println("incorrect url");
             }
 
