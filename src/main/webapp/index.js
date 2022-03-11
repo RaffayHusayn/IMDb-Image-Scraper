@@ -149,10 +149,10 @@ document.querySelector("#suggestion3").addEventListener("mouseout", function(){
 });
 
 document.querySelector("#suggestion4").addEventListener("mouseover", function(){
-    this.textContent = "https://www.imdb.com/list/ls089636378/";
+    this.textContent = "https://www.imdb.com/list/ls022575155";
 });
 document.querySelector("#suggestion4").addEventListener("mouseout", function(){
-    this.textContent = "Life Changing List";
+    this.textContent = "Best Sci-fi List";
 });
 //========= Movie Page ======================
 document.querySelector("#suggestionMovie1").addEventListener("mouseover", function(){
