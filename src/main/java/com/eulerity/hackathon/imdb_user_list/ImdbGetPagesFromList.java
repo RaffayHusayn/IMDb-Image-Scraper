@@ -17,6 +17,9 @@ public class ImdbGetPagesFromList {
         this.listUrl = listUrl;
     }
 
+    /*
+        provided a url to an IMDb user list, it scrapes the urls of all the movie pages in the user list.
+     */
     public List<String> getPageUrl() throws IOException {
 
         List<String> pageUrlList = new ArrayList<>();
@@ -26,6 +29,7 @@ public class ImdbGetPagesFromList {
             for (Element movieElement : movies) {
                 //Web Scrapping using Jsoup
                 String pageUrlString = movieElement.select("div.lister-item-image.ribbonize > a").attr("href");
+                //completeing the string by appending "http://imdb.com" to the front
                 String pageUrl = "http://imdb.com" + pageUrlString;
                 pageUrlList.add(pageUrl);
             }

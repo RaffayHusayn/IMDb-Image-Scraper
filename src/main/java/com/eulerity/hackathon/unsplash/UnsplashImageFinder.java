@@ -17,19 +17,19 @@ public class UnsplashImageFinder {
         this.url = url;
     }
 
-    //scraper
+
     public void scrape(){
         try{
             Document doc = Jsoup.connect(url).get();
-            String nav = doc.select("a.ztehP.KHq0c > div").text();
             List<String> allHref = doc.select("a.rEAWd").eachAttr("href");
-
             List<String> completeHref = allHref.stream().map(s->"https://unsplash.com"+s).collect(Collectors.toList());
             extractPhotosFromList(completeHref);
         }catch(Exception e){
             e.printStackTrace();
         }
     }
+
+    //scrapes pic from the individual pic page
     public void extractPhotosFromList(List<String> urlList) throws IOException {
         int counter = 1;
         for(String url: urlList){
@@ -42,6 +42,8 @@ public class UnsplashImageFinder {
 
         }
     }
+
+    //return new list and clears the private list
     public List<String> getList(){
         List<String> tempReturnList = new ArrayList<>(unsplashImagesList);
         unsplashImagesList.clear();

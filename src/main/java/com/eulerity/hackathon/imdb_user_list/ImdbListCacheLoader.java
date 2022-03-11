@@ -4,7 +4,9 @@ import com.google.common.cache.CacheLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+Cache for IMDb User List
+ */
 public class ImdbListCacheLoader extends CacheLoader<String, List<String>> {
     @Override
     public List<String> load(String movieUrl) throws Exception {
@@ -16,7 +18,8 @@ public class ImdbListCacheLoader extends CacheLoader<String, List<String>> {
         /*
          * scrapes the first 10 movies of the userList with 2 threads in 5 iterations
          *  ------------------------------------------------------------------------------------------------------------------
-         * | NOTE : scraping with more than 2 threads at a time sends too many requests to imdb resulting in a temporary ban |
+         * | NOTE : scraping IMDb with more than 2 threads at a time sends too many requests resulting in a temporary ban   |
+         * |         Here I am only using 2 threads for that reason, which makes the scraping slow but site friendly        |
          * ------------------------------------------------------------------------------------------------------------------
          */
         for(int i =0 ; i<5; i++) {

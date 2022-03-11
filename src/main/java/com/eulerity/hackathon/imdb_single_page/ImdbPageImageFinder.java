@@ -72,7 +72,7 @@ public class ImdbPageImageFinder {
         return "";
     }
 
-    //getter for Image Array
+    // Converts Hashset to ArrayList, return ArrayList and clears hashset
     public List<String> getImages() {
         List<String> ImdbImages = new ArrayList<>(ImdbImagesSet);
         ImdbImagesSet.clear();

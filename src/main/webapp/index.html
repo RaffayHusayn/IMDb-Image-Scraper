@@ -6,86 +6,53 @@
 <body>
 <h1>Eulerity Take-Home Challenge</h1>
 
-<h2>How it works</h2>
+<h2>Description and Valid Inputs</h2>
+<p>The crawler can crawl and scrape images for 4 different type of inputs.
+    It also maintains individual caches for 50 entries of each category or 60 minutes.</p>
 <ul>
-    <li>Pressing the submit button on this page will make a POST
-        request to /main
+    <li><strong>IMDb User Lists:</strong>  Crawler takes IMDb user list's URL as an input. Extract all the movie page URLs from the list.
+        It then spins up 2 threads, each crawling 1 movie page URL. We iteratively call the first 10 URLs from the user
+        list in a pair of 2. IMDb doesn't like a lot of requests simultaneously, so using more than 2 threads results
+        in a temporary ban.
     </li>
-    <li>That request will contain a form parameter with the url
-        populated in the input box below
+    <li><strong>Unsplash Homepage:</strong> Crawler takes Unsplash's homepage URL as an input. Extract all the category page URLs.
+        It then spins up a separate thread for each category, crawling and scraping images. Unsplash is much more
+        crawler friendly and doesn't result in a ban for sending too many requests.
     </li>
-    <li>The ImageFinder servlet will respond to the request with a
-        list of image urls
+    <li><strong>IMDb Movie Page:</strong> Crawler takes the movie page's URL, crawls to the photos section, and scrape images.
     </li>
-    <li>This page contains javascript to send the request and use the
-        response to build a list of images
+    <li><strong>Unsplash Category Page:</strong> Crawler takes the unsplash category page's URL, crawls to each image, and scrapes it.
     </li>
 </ul>
-<h2>Backend Developers</h2>
+<h2>Features</h2>
 <ul>
-    <li>You can update the ImageFinder servlet to add crawling logic</li>
-    <li>Feel free to add as many classes/packages/files/third party
-        libraries as you'd like
-    </li>
-    <li>We recommend JSoup for parsing web pages</li>
-    <li>You can update this page's html/css/style if you plan on
-        improving the interface
-    </li>
-    <li>Your final submission does not need to contain any of the
-        files included herein
-    </li>
-    <li>This project is just skeleton code so you can hit the ground
-        running.
-    </li>
-    <li>Some ideas:
-        <ul>
-            <li>Crawl not only the given url, but other pages in the same domain</li>
-            <li>Make your crawler multithreaded to speed up response times</li>
-            <li>Be a friendly crawler and try not to hammer a site</li>
-            <li>Think about how to identify different classes of images and do they need special handling</li>
-            <li>Can you identify images as logos? Perhaps collect favicons?</li>
-            <li>Can you mark images that contain people?</li>
-        </ul>
-    </li>
+    <li>Multithreading.</li>
+    <li>Caching, caches 50 entries for each type for upto 60 minutes using Guava Cache.</li>
+    <li>Crawling to other specific URLs from a given URL to scrape correct images.</li>
+    <li>Site Friendly, doesn't allow multiple requests which could result in a temporary ban.</li>
 </ul>
-<h2>Important Notes</h2>
-<p>Congratulations on making it this far into the interview
-    process!</p>
-<p>
-    This is a free-form hackathon for a very important reason. We wish to see what ideas you can bring to the table.
-</p>
-<p><strong>If your submission only contains 5-10 lines of new code, please think twice about submitting it.</strong> If
-    you need more time, you can ask for it.
-</p>
-<p>
-    You can use one of the ideas above, but feel free to go off and build something completely different.
-    The important thing is to submit something that highlights your strengths as a developer.
-</p>
-<p>
-    <b>Remember, this is your chance to show off how you can best contribute to our team.</b>
-</p>
-<p>Please remember to think about good design and code style. Comments in your code are great, but thought should also
-    be taken in how to name your variables and method.</p>
+<h2>Notes</h2>
+<p>Use the provided suggestions or type your own URLs</p>
 
 
 <div class="content">
     <div class="suggestionContainer">
-        <p>IMDb UserLists Suggestions (Multithreaded; Approx. 2 mins):</p>
+        <p><strong>IMDb User Lists Suggestions (Multithreaded; Approx. 2 mins):</strong></p>
         <button type="button" class="suggestions" id="suggestion1">IMDb Top 25 List</button>
         <button type="button" class="suggestions" id="suggestion2">Best Dramas List</button>
         <button type="button" class="suggestions" id="suggestion3">Best Animations List</button>
         <button type="button" class="suggestions" id="suggestion4">Best Sci-fi List</button>
 
-        <p>IMDb Page Suggestions: </p>
+        <p><strong>IMDb Page Suggestions:</strong> </p>
         <button type="button" class="suggestionsMovie" id="suggestionMovie1">Good Will Hunting</button>
         <button type="button" class="suggestionsMovie" id="suggestionMovie2">Ex Machina</button>
         <button type="button" class="suggestionsMovie" id="suggestionMovie3">The Garden of Words</button>
         <button type="button" class="suggestionsMovie" id="suggestionMovie4">Akira</button>
 
-        <p>Unsplash All Categories Suggestions (Multithreaded): </p>
+        <p><strong>Unsplash All Categories Suggestions (Multithreaded):</strong> </p>
         <button type="button" class="suggestionsUnsplashAllCat" id="suggestionUnsplashAllCat1">All Categories (Unsplash)</button>
 
-        <p>Unsplash Suggestions: </p>
+        <p><strong>Unsplash Category Page Suggestions: </strong></p>
         <button type="button" class="suggestionsUnsplash" id="suggestionUnsplash1">Nature (Unsplash)</button>
         <button type="button" class="suggestionsUnsplash" id="suggestionUnsplash2">Current Events (Unsplash)</button>
         <button type="button" class="suggestionsUnsplash" id="suggestionUnsplash3">People (Unsplash)</button>
